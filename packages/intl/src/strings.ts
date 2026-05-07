@@ -2742,5 +2742,11 @@ Use this if changes from other devices are not appearing on this device. This wi
   
 Continue without attachments?`,
   pleaseLoginToDownloadAttachments: () =>
-    t`Please login to download attachments.`
+    t`Please login to download attachments.`,
+  details: () => t`Details`,
+  dateSynced: () => t`Date synced`,
+  failedInboxItems: () => t`Failed inbox items`,
+  failedInboxItemsDesc: () => t`View failed inbox items and error contexts`,
+  noFailedInboxItems: () => t`No failed inbox items`,
+  show: () => t`Show`
 };
