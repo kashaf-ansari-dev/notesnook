@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 import { useDatePicker } from "@rehookify/datepicker";
 import { Box, Button, Flex, Text } from "@theme-ui/components";
 import { useState } from "react";
@@ -31,6 +32,24 @@ type DayPickerProps = {
 export function DayPicker(props: DayPickerProps) {
   const { selected, sx, maxDate, minDate, onSelect } = props;
   const [selectedDates, onDatesChange] = useState<Date[]>([selected]);
+
+  function clampDate(d: Date) {
+    /**
+     * Strip time for accurate comparison
+     */
+    const normalizedMaxDate = maxDate ? stripTime(maxDate) : null;
+    const normalizedMinDate = minDate ? stripTime(minDate) : null;
+
+    if (normalizedMaxDate && d > normalizedMaxDate) {
+      return normalizedMaxDate;
+    }
+    if (normalizedMinDate && d < normalizedMinDate) {
+      return normalizedMinDate;
+    }
+
+    return d;
+  }
+
   const {
     data: { weekDays, months, years, calendars },
     propGetters: { dayButton, addOffset, subtractOffset, setOffset }
@@ -83,9 +102,8 @@ export function DayPicker(props: DayPickerProps) {
             value={month}
             onChange={(e) => {
               const selectedOption = e.target.selectedOptions[0];
-              setOffset(new Date(selectedOption.dataset.date || ""))?.onClick?.(
-                e
-              );
+              const d = clampDate(new Date(selectedOption.dataset.date || ""));
+              setOffset(d)?.onClick?.(e as any);
             }}
           >
             {months.map((month) => (
@@ -112,9 +130,8 @@ export function DayPicker(props: DayPickerProps) {
             value={year}
             onChange={(e) => {
               const selectedOption = e.target.selectedOptions[0];
-              setOffset(new Date(selectedOption.dataset.date || ""))?.onClick?.(
-                e
-              );
+              const d = clampDate(new Date(selectedOption.dataset.date || ""));
+              setOffset(d)?.onClick?.(e as any);
             }}
           >
             {years.map((year) => (
@@ -194,4 +211,8 @@ export function DayPicker(props: DayPickerProps) {
       </Box>
     </Flex>
   );
+}
+
+function stripTime(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
