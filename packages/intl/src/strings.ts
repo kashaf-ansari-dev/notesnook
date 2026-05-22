@@ -2686,5 +2686,7 @@ Continue without attachments?`,
   openingLocalFileDesc: (filePath: string) =>
     t`Are you sure you want to open this file: ${filePath}?`,
   cantOpenFileLinksInBrowsers: () =>
-    t`File links cannot be opened in browsers. Please use the Notesnook desktop app.`
+    t`File links cannot be opened in browsers. Please use the Notesnook desktop app.`,
+  invalidThemeFileFormat: () =>
+    t`We couldn't load this theme. Please make sure the file is a valid theme export.`
 };
