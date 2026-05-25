@@ -7200,7 +7200,7 @@ msgid "We are sorry, it seems that the app crashed due to an error. You can subm
 msgstr ""
 
 #: src/strings.ts:2691
-msgid "We couldn't load this theme. Please make sure the file is a valid theme export."
+msgid "We couldn't load this theme. Please make sure the file is a valid JSON theme file."
 msgstr ""
 
 #: src/strings.ts:1390

@@ -2688,5 +2688,5 @@ Continue without attachments?`,
   cantOpenFileLinksInBrowsers: () =>
     t`File links cannot be opened in browsers. Please use the Notesnook desktop app.`,
   invalidThemeFileFormat: () =>
-    t`We couldn't load this theme. Please make sure the file is a valid theme export.`
+    t`We couldn't load this theme. Please make sure the file is a valid JSON theme file.`
 };
