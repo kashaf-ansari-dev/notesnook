@@ -34,7 +34,7 @@ import { defaultBorderRadius, AppFontSize } from "../../../utils/size";
 import { IconButton } from "../icon-button";
 import Paragraph from "../typography/paragraph";
 import AppIcon from "../AppIcon";
-import { Spacing } from "../../../common/design/spacing";
+import { Radius, Spacing } from "../../../common/design/spacing";
 
 export type FormValues = Record<string, string>;
 export type FormErrors = Partial<Record<string, string>>;
@@ -171,13 +171,13 @@ export function hasFormErrors(errors: FormErrors) {
 export const validators = {
   required:
     (message = "This field is required") =>
-    (value: string) =>
-      value?.trim() ? undefined : message,
+      (value: string) =>
+        value?.trim() ? undefined : message,
 
   email:
     (message = "Please enter a valid email") =>
-    (value: string) =>
-      !value?.trim() || isEmail(value.trim()) ? undefined : message,
+      (value: string) =>
+        !value?.trim() || isEmail(value.trim()) ? undefined : message,
 
   minLength: (length: number, message?: string) => (value: string) =>
     !value || value.length >= length
@@ -186,15 +186,15 @@ export const validators = {
 
   url:
     (message = "Please enter a valid URL") =>
-    (value: string) =>
-      !value?.trim() || isURL(value.trim(), { allow_underscores: true })
-        ? undefined
-        : message,
+      (value: string) =>
+        !value?.trim() || isURL(value.trim(), { allow_underscores: true })
+          ? undefined
+          : message,
 
   matchField:
     (fieldName: string, message = "Values do not match") =>
-    (value: string, values: FormValues) =>
-      value === values[fieldName] ? undefined : message
+      (value: string, values: FormValues) =>
+        value === values[fieldName] ? undefined : message
 };
 
 interface FormInputProps extends TextInputProps {
@@ -239,7 +239,7 @@ export function FormInput({
   button,
   buttonLeft,
   buttons,
-  height = 45,
+  height,
   fontSize = AppFontSize.sm,
   inputStyle = {},
   containerStyle = {},
@@ -282,7 +282,7 @@ export function FormInput({
 
   const style: ViewStyle = {
     borderWidth: 1,
-    borderRadius: defaultBorderRadius,
+    borderRadius: Radius.XS,
     backgroundColor: colors.secondary.background,
     borderColor: borderColor,
     flexDirection: "row",
@@ -366,7 +366,7 @@ export function FormInput({
           style={{
             flexDirection: "row",
             justifyContent: "center",
-            height: 35 > height ? height : 35,
+            height: height ? (35 > height ? height : 35) : undefined,
             alignItems: "center"
           }}
         >

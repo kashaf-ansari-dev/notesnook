@@ -129,8 +129,8 @@ export const Button = ({
           typeof width === "number"
             ? width * growFactor
             : (width as DimensionValue) || undefined,
-        paddingHorizontal: DefaultAppStyles.GAP,
-        paddingVertical: DefaultAppStyles.GAP_VERTICAL,
+        paddingHorizontal: Spacing.LEVEL_3,
+        paddingVertical: Spacing.LEVEL_3,
         borderRadius: defaultBorderRadius,
         alignSelf: "center",
         justifyContent: "center",
